@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css">
+    <link rel="stylesheet" href="/styles/cart.css">
+    <title>Košarica</title>
+</head>
+<body>
+    <header>
+        <div class="header_logo_div">
+            <a href="/home/getCategories" class="header_logo_a">eLjekarna</a>
+        </div>
+        <div class="header_ikone">
+            <a href="/cart" class="header_ikone_a">
+                <i class="ri-shopping-cart-line">
+                    <% if (totalCount > 0) { %>
+                        <p class="cart-counter"><%= totalCount %></p>
+                    <% } %>
+                </i>
+            </a>
+            <a href="" target="_blank" class="header_ikone_a"><i class="ri-search-line"></i></a>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="cart_section">
+            <div class="cart_data">
+                <div class="cart_heading">
+                    <h1>Košarica</h1>
+                </div>
+                <div class="cart_product">
+                    <div class="item_name">
+                        <p>NAZIV PROIZVODA</p>
+                        <div class="cart-items">
+                            <% cart.forEach(item => { %>
+                                <p><%= item.name %></p>
+                            <% }); %>
+                        </div>
+                    </div>
+                    <div class="item_quantity">
+                        <p>KOLIČINA</p>
+                        <div class="cart-items-quantity">
+                            <% cart.forEach(item => { %>
+                                <div class="quantity">
+                                    <p><%= item.quantity %></p>
+                                    <% if (item.quantity > 0) { %>
+                                        <button class="increment-btn" data-id="<%= item.id %>">+</button>
+                                        <button class="decrement-btn" data-id="<%= item.id %>">-</button>
+                                    <% } %>
+                                </div>
+                            <% }); %>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/scripts/cart_click.js"></script>
+    <script src="/scripts/click.js"></script>
+</body>
+</html>
